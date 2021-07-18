@@ -261,6 +261,7 @@
 		</div>
 	</div>
 
+<!--
 	<div id="fh5co-gallery">
 		<div class="container">
 			<div class="row">
@@ -366,6 +367,7 @@
 			</div>
 		</div>
 	</div>
+-->
 
 	<div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url(images/img_bg_5.jpg);">
 		<div class="overlay"></div>
@@ -615,7 +617,25 @@
 		let cloudDB = firebase.firestore();
 
 		document.getElementById("attend").onclick=function(){
-			console.log('click');
+			let name = document.getElementById("name").value;
+			let email = document.getElementById("email").value;
+			const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    		
+			if (re.test(String(email).toLowerCase()) && name != "") {
+				cloudDB.collection("attendees").add(
+					{
+						email: email,
+						name: name,
+						created_at: new Date()
+					}
+				)
+				.then(function (docRef) {
+					console.log("Document written with ID", docRef.id);
+				})
+				.catch(function (error) {
+					console.log("Error adding document", error);
+				})
+			}
 		};
 		console.log('test');
 	</script>
