@@ -520,7 +520,7 @@
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Are You Attending?</h2>
+					<h2>Bist du dabei?</h2>
 					<p>Please Fill-up the form to notify you that you're attending. Thanks.</p>
 				</div>
 			</div>
@@ -547,6 +547,15 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- popup dialog -->
+	<a class="popup-with-zoom-anim" href="#small-dialog">Open with fade-zoom animation</a><br>
+	<!-- dialog itself, mfp-hide class is required to make dialog hidden -->
+	<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+		<h1>Dialog example</h1>
+		<p>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely disappointed.</p>
+	</div>
+
 	</div>
 
 	<div class="gototop js-top">
@@ -621,6 +630,23 @@
 				})
 			}
 		};
+
+		// visuals
+		$('.popup-with-zoom-anim').magnificPopup({
+			type: 'inline',
+
+			fixedContentPos: false,
+			fixedBgPos: true,
+
+			overflowY: 'auto',
+
+			closeBtnInside: true,
+			preloader: false,
+			
+			midClick: true,
+			removalDelay: 300,
+			mainClass: 'my-mfp-zoom-in'
+		});	
 	</script>
 
 	<!-- Main -->
