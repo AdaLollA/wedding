@@ -540,7 +540,7 @@
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-4">
-							<button id="attend" type="button" class="btn btn-default btn-block">I am Attending</button>
+							<button id="attend" type="button" class="btn btn-default btn-block popup-with-zoom-anim" href="#dialog">I am Attending</button>
 						</div>
 					</form>
 				</div>
@@ -549,13 +549,10 @@
 	</div>
 
 	<!-- popup dialog -->
-	<a class="popup-with-zoom-anim" href="#small-dialog">Open with fade-zoom animation</a><br>
-	<!-- dialog itself, mfp-hide class is required to make dialog hidden -->
-	<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
-		<h1>Dialog example</h1>
-		<p>This is dummy copy. It is not meant to be read. It has been placed here solely to demonstrate the look and feel of finished, typeset text. Only for show. He who searches for meaning here will be sorely disappointed.</p>
+	<div id="dialog" class="zoom-anim-dialog mfp-hide small-dialog">
+		<h1 id="popup-title"></h1>
+		<p id="popup-text"></p>
 	</div>
-
 	</div>
 
 	<div class="gototop js-top">
@@ -608,6 +605,12 @@
 
 		let cloudDB = firebase.firestore();
 
+		// Initialize Popups
+		$('.error-dialog').magnificPopup({
+			type: 'inline',
+ 		 	midClick: true
+		});
+
 		document.getElementById("attend").onclick = function(){
 			let name = document.getElementById("name").value;
 			let email = document.getElementById("email").value;
@@ -627,7 +630,15 @@
 				})
 				.catch(function (error) {
 					console.log("Error adding document", error);
-				})
+				});
+
+				// success text
+				$('#popup-title').text('Super!');
+				$('#popup-text').text('Wir haben deine Daten erhalten und freuen uns auch Dich!');
+			} else {
+				// error text popup-title
+				$('#popup-title').text('Eingabe falsch!');
+				$('#popup-text').text('Mindestens eines der Eingabefelder wurde nicht korrekt ausgefüllt.');
 			}
 		};
 
