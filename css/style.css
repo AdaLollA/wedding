@@ -16,6 +16,10 @@
 	position: relative;
 }
 
+/* table */
+table, th, td {
+  border: 2px solid black;
+} 
 
 /**
  * Fade-zoom animation for first dialog
